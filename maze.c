@@ -375,29 +375,27 @@ int fill_map(FILE *file, Map *map, const int method) {
 // Main function of the program
 // Mainly just stores all the structures and works with the user defined parameters
 int main(const int argc, char* argv[]) {
-    // FILE* file = NULL;
-    // Map map;
-    // Argument argument;
-    // if (argument_constructor(&argument, argc, argv)) {
-        // if (argument.method != METHOD_HELP) {
-            // if (open_file(&file, argument.filename)) {
-                // if (fill_map(file, &map, argument.method)) {
-                    // if (argument.method != METHOD_TEST) {
-                        // hand_solver(&map, argument.row, argument.col, argument.method);
-                    // }
-                // }
-                // map_destructor(&map);
-            // }
-        // } else show_help();
-        // argument_destructor(&argument);
-    // }
-    // if (argument.method) {
+    FILE* file = NULL;
+    Map map;
+    Argument argument;
+    if (argument_constructor(&argument, argc, argv)) {
+        if (argument.method != METHOD_HELP) {
+            if (open_file(&file, argument.filename)) {
+                if (fill_map(file, &map, argument.method)) {
+                    if (argument.method != METHOD_TEST) {
+                        hand_solver(&map, argument.row, argument.col, argument.method);
+                    }
+                }
+                map_destructor(&map);
+            }
+        } else show_help();
+        argument_destructor(&argument);
+    }
+    if (argument.method) {
 
-    // }
-    // if (file != NULL) {
-        // close_file(file, argument.filename);
-    // }
-    char test[] = "23";
-    printf("%d", chars_to_number(test));
+    }
+    if (file != NULL) {
+        close_file(file, argument.filename);
+    }
     return 1;
 }
